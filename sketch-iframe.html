@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>P5js sketch WITHIN an iframe</title>
+    <style type="text/css">
+      body{
+        margin: 0;
+        padding: 25px;
+      }
+      iframe{
+        display: block;
+        margin: auto;
+        border: 2px #fc6 solid;
+      }
+      p{
+        margin-top: 0;
+        margin-bottom: 1.2em;
+      }
+      p:first-of-type{
+        margin-top: 2.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <!--Insert the version with no iframe in this iframe-->
+    <iframe src="sketch-no-iframe.html" width="500px" height="500px"></iframe>
+    
+    <p>The P5js library and the sketch are both loaded in the iframe element,
+    which acts as its new window; thus the sketch only responds to interaction
+    happening <strong>inside</strong> its window (iframe).</p>
+    
+    <p>This is because P5js registers event handlers to the window of the
+    document it is loaded in, which in this case is the iframe, not the top
+    window.</p>
+  </body>
+</html>
