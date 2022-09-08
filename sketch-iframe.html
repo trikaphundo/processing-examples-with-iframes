@@ -56,18 +56,15 @@
       "createCanvas(windowWidth, windowHeight)" so that it fills the iframe.</li>
     </ul>
     
-    The little problem is that every sketch createCanvas statement must be
-    modified. Nevertheless, <em>another option</em> which will not require
-    making any changes to existing sketches is
+    <p>The <em>little problem</em> with this approach is that the iframe needs
+    explicit dimensions, either via CSS or by setting its width and height
+    attributes. It will not adapt to its content (the canvas) unlike block
+    elements, such as div, main, etc., do.</p>
     
-    <ul>
-      <li>Keep the div with id "example-cover", that currently wraps
-      the canvas, or the image is a p5js script is not available.</li>
-      
-      <li>If a p5js sketch is available, insert an iframe in the
-      previous div. Without setting the iframe's dimensions, which will be
-      infered from its content: the dimensions of the canvas (640x360px) given
-      in the sketch with the "createCanvas(640, 360)".</li>
+    <p>This is because iframes are windows inside the document. Therefore
+    sketches should modify its "createCanvas" statement to
+    "createCanvas(windowWidth, windowHeight)" so that it fills the window it
+    belongs to (the iframe).</p>
     </ul>
   </body>
 </html>
