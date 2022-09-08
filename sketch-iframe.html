@@ -8,10 +8,17 @@
         margin: 0;
         padding: 25px;
       }
+      /*Approximate the structure of the Processing example webpages*/
+      #example-cover{
+        margin-left: 150px;
+        padding-top: 50px;
+      }
       iframe{
+        width: 640px;
+        height: 360px;
         display: block;
-        margin: auto;
-        border: 2px #fc6 solid;
+        /*margin: auto;*/ /*center the iframe in its container*/
+        border: 2px #fc6 solid; /*unnecessary, just so it is easier to see*/
       }
       p{
         margin-top: 0;
@@ -24,7 +31,9 @@
   </head>
   <body>
     <!--Insert the version with no iframe in this iframe-->
-    <iframe src="sketch-no-iframe.html" width="500px" height="500px"></iframe>
+    <div id="example-cover">
+      <iframe src="sketch-no-iframe.html"></iframe>
+    </div>
     
     <p>The P5js library and the sketch are both loaded in the iframe element,
     which acts as its new window; thus the sketch only responds to interaction
@@ -33,5 +42,32 @@
     <p>This is because P5js registers event handlers to the window of the
     document it is loaded in, which in this case is the iframe, not the top
     window.</p>
+    
+    <p>This example also gives a <em>suggestion</em> of how the Processing example
+    webpages could implement this change</p>
+    
+    <ul>
+      <li>Keep the div with id "example-cover", that currently wraps
+      the canvas, or the image is a p5js script is not available.</li>
+      
+      <li>If a p5js sketch is available, insert an iframe in the
+      previous div. Giving iframe the 640x360px dimensions, instead of doing so
+      in the sketch with the "createCanvas(640, 360)", which shall be changed to
+      "createCanvas(windowWidth, windowHeight)" so that it fills the iframe.</li>
+    </ul>
+    
+    The little problem is that every sketch createCanvas statement must be
+    modified. Nevertheless, <em>another option</em> which will not require
+    making any changes to existing sketches is
+    
+    <ul>
+      <li>Keep the div with id "example-cover", that currently wraps
+      the canvas, or the image is a p5js script is not available.</li>
+      
+      <li>If a p5js sketch is available, insert an iframe in the
+      previous div. Without setting the iframe's dimensions, which will be
+      infered from its content: the dimensions of the canvas (640x360px) given
+      in the sketch with the "createCanvas(640, 360)".</li>
+    </ul>
   </body>
 </html>
